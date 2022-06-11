@@ -1,0 +1,48 @@
+﻿<Window x:Class="QWERTY_s_1_ex_3.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QWERTY_s_1_ex_3"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid Background="#FF004165">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2.5*"/>
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Введите табельный номер" Grid.Row="0" HorizontalContentAlignment="Left" />
+            <TextBox x:Name="tubNum" Grid.Row="1" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Label Content="Введите ФИО" Grid.Row="2" HorizontalContentAlignment="Left" />
+            <TextBox x:Name="fio" Grid.Row="3" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Label Content="Введите должность" Grid.Row="4" HorizontalContentAlignment="Left"/>
+            <TextBox x:Name="positions" Grid.Row="5" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Label Content="Введите дату трудоустройства" Grid.Row="6" HorizontalContentAlignment="Left"/>
+            <TextBox x:Name="date" Grid.Row="7" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Button Grid.Row="8" Content="Ввод данных" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Height="25" Click="EnterClick"/>
+        </Grid>
+
+        <Label Grid.Column="1" Grid.Row="0" Content="Фирма ремонта QWERTY" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Image Source="Logo.png" Height="100" Grid.Row="0" Grid.Column="0"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="QWERTY_s_1_ex_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QWERTY_s_1_ex_3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid Background="#FF004165">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Авторизация" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.RowSpan="5" Background="#FF009FDA"/>
+            <Label Content="Введите логин" Grid.Row="1" HorizontalContentAlignment="Left" />
+            <TextBox x:Name="login" Grid.Row="2" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Label Content="Введите пароль" Grid.Row="3" HorizontalContentAlignment="Left"/>
+            <TextBox x:Name="password" Grid.Row="4" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+            <Button Grid.Row="5" Content="Вход" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Height="25" Click="EnterClick" Name="enter"/>
+        </Grid>
+
+        <Label Grid.Column="1" Grid.Row="0" Content="Фирма ремонта QWERTY" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Image Source="Logo.png" Height="100" Grid.Row="0" Grid.Column="0"/>
+        <Button Grid.Row="2" Content="Подсказать пароль" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Height="25" Click="ButtonClick" Visibility="Hidden" Name="passwordButton"/>
+    </Grid>
+</Window>
