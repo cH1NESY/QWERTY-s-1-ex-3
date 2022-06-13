@@ -1,0 +1,29 @@
+﻿<Window x:Class="QWERTY_s_1_ex_3.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QWERTY_s_1_ex_3"
+        mc:Ignorable="d"
+        Title="Window2" Height="450" Width="800" Background="#FF009FDA">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Image Source="Logo.png" Height="100" Grid.Row="0" Grid.Column="0"/>
+            <Button Content="Мастера" Grid.Row="1" Width="130" VerticalAlignment="Center" Click="MastersClick"/>
+            <Button Content="Клиенты" Grid.Row="2" Width="130" VerticalAlignment="Center" Click="ClientsClick"/>
+            <Button Content="Заказы" Grid.Row="3" Width="130" VerticalAlignment="Center" Click="OrdersClick"/>
+        </Grid>
+        <Frame Grid.Column="1" x:Name="myFrame" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

@@ -35,8 +35,10 @@ namespace QWERTY_s_1_ex_3
         public virtual DbSet<Specifications> Specifications { get; set; }
         public virtual DbSet<SpecificationsOfPart> SpecificationsOfPart { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<Types> Types { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
+        public virtual DbSet<WorkerStatus> WorkerStatus { get; set; }
     }
 }

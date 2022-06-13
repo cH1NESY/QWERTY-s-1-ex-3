@@ -93,6 +93,16 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="id" />
@@ -119,6 +129,15 @@
           <Property Name="p" Type="nchar" MaxLength="20" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="dateEmp" Type="date" />
+          <Property Name="s" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkerStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Device_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -264,6 +283,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Worker_WorkerStatus">
+          <End Role="WorkerStatus" Type="Self.WorkerStatus" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище QWERTYModelContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
@@ -275,9 +306,11 @@
           <EntitySet Name="Specifications" EntityType="Self.Specifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpecificationsOfPart" EntityType="Self.SpecificationsOfPart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerStatus" EntityType="Self.WorkerStatus" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Device_Client" Association="Self.FK_Device_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Device" EntitySet="Device" />
@@ -324,6 +357,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Worker_Position" Association="Self.FK_Worker_Position">
             <End Role="Position" EntitySet="Position" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_WorkerStatus" Association="Self.FK_Worker_WorkerStatus">
+            <End Role="WorkerStatus" EntitySet="WorkerStatus" />
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
         </EntityContainer>
@@ -440,6 +477,16 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Repair" Relationship="Self.FK_Repair_Status" FromRole="Status" ToRole="Repair" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="id" />
@@ -468,8 +515,19 @@
           <Property Name="p" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dateEmp" Type="DateTime" Precision="0" />
+          <Property Name="s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
           <NavigationProperty Name="Device" Relationship="Self.FK_Device_Worker" FromRole="Worker" ToRole="Device" />
           <NavigationProperty Name="Position1" Relationship="Self.FK_Worker_Position" FromRole="Worker" ToRole="Position" />
+          <NavigationProperty Name="WorkerStatus" Relationship="Self.FK_Worker_WorkerStatus" FromRole="Worker" ToRole="WorkerStatus" />
+        </EntityType>
+        <EntityType Name="WorkerStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_WorkerStatus" FromRole="WorkerStatus" ToRole="Worker" />
         </EntityType>
         <Association Name="FK_Device_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -615,6 +673,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Worker_WorkerStatus">
+          <End Role="WorkerStatus" Type="Self.WorkerStatus" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QWERTYEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Device" EntityType="Self.Device" />
@@ -626,9 +696,11 @@
           <EntitySet Name="Specifications" EntityType="Self.Specifications" />
           <EntitySet Name="SpecificationsOfPart" EntityType="Self.SpecificationsOfPart" />
           <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type" EntityType="Self.Type" />
           <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="WorkerStatus" EntityType="Self.WorkerStatus" />
           <AssociationSet Name="FK_Device_Client" Association="Self.FK_Device_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Device" EntitySet="Device" />
@@ -676,6 +748,10 @@
           <AssociationSet Name="FK_SpecificationsOfPart_Specifications" Association="Self.FK_SpecificationsOfPart_Specifications">
             <End Role="Specifications" EntitySet="Specifications" />
             <End Role="SpecificationsOfPart" EntitySet="SpecificationsOfPart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_WorkerStatus" Association="Self.FK_Worker_WorkerStatus">
+            <End Role="WorkerStatus" EntitySet="WorkerStatus" />
+            <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -780,6 +856,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QWERTYModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Type">
             <EntityTypeMapping TypeName="QWERTYModel.Type">
               <MappingFragment StoreEntitySet="Type">
@@ -807,6 +894,16 @@
                 <ScalarProperty Name="p" ColumnName="p" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="dateEmp" ColumnName="dateEmp" />
+                <ScalarProperty Name="s" ColumnName="s" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerStatus">
+            <EntityTypeMapping TypeName="QWERTYModel.WorkerStatus">
+              <MappingFragment StoreEntitySet="WorkerStatus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

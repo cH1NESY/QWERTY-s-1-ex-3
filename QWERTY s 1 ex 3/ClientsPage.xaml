@@ -1,0 +1,35 @@
+﻿<Page x:Class="QWERTY_s_1_ex_3.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QWERTY_s_1_ex_3"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientsPage" Background="#FF004165">
+
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Клиенты" HorizontalAlignment="Center" />
+
+        <Label Content="Введите ФИО:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="nameBox"  Height="25" Grid.Column="0" Grid.Row="2" Width="250"  SelectionChanged="ChangedName" HorizontalAlignment="Center"/>
+
+
+        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" AutoGenerateColumns="False" Name="clientsTable">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Width="*" Binding="{Binding Num}"/>
+                <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Телефон" Width="*" Binding="{Binding phone}"/>
+              
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

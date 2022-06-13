@@ -11,30 +11,19 @@ namespace QWERTY_s_1_ex_3
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Worker
+    
+    public partial class WorkerStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Worker()
+        public WorkerStatus()
         {
-            this.Device = new HashSet<Device>();
+            this.Worker = new HashSet<Worker>();
         }
-
-        public int tabNum { get; set; }
-        public string FIO { get; set; }
-        public int position { get; set; }
-        public decimal oklad { get; set; }
-        public Nullable<decimal> percentToRepair { get; set; }
-        public string p { get; set; }
-        public string password { get; set; }
-        public Nullable<System.DateTime> dateEmp { get; set; }
-        public string s { get; set; }
-        public Nullable<int> status { get; set; }
-        public string TitleStatus { get => WorkerStatus.Title; }
-
+    
+        public int id { get; set; }
+        public string Title { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Device> Device { get; set; }
-        public virtual Position Position1 { get; set; }
-        public virtual WorkerStatus WorkerStatus { get; set; }
+        public virtual ICollection<Worker> Worker { get; set; }
     }
 }

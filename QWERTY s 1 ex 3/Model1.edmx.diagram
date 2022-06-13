@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4ec6c6b841624d579f92b9538bbf291a" Name="Diagram1">
+      <Diagram DiagramId="7e69091f5d3a4e15b4c71611a360690f" Name="Diagram1">
         <EntityTypeShape EntityType="QWERTYModel.Client" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Device" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.DevicePart" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
@@ -15,9 +15,11 @@
         <EntityTypeShape EntityType="QWERTYModel.Specifications" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.SpecificationsOfPart" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Status" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Type" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Types" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.Worker" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.Worker" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.WorkerStatus" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Client" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Type" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Types" ManuallyRouted="false" />
@@ -30,6 +32,7 @@
         <AssociationConnector Association="QWERTYModel.FK_Worker_Position" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Repair_Status" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_SpecificationsOfPart_Specifications" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTYModel.FK_Worker_WorkerStatus" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

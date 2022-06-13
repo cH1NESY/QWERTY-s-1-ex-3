@@ -53,12 +53,16 @@ namespace QWERTY_s_1_ex_3
                 {
                     if (worker.password.Equals(pass))
                     {
-                        password.Background = Brushes.Green;
+                        
                         MessageBox.Show("Успешная авторизация!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Window2 window2 = new Window2();
+                        window2.ShowDialog();
+                        
+                        
                     }
                     else
                     {
-                        password.Background = Brushes.Red;
+                        
                         MessageBox.Show("Неправильно введен пароль, осталось попыток:" + attempt, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
@@ -81,6 +85,9 @@ namespace QWERTY_s_1_ex_3
             {
                 MessageBox.Show("Ошибка!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+
+
 
 
         }
