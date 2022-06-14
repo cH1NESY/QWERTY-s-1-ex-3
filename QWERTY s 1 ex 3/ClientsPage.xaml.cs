@@ -32,7 +32,7 @@ namespace QWERTY_s_1_ex_3
         {
             var list = context.Client.ToList();
 
-            if (string.IsNullOrWhiteSpace(nameBox.Text))
+            if (!string.IsNullOrWhiteSpace(nameBox.Text))
             {
                 list = list.Where(x => x.name.ToLower().Contains(nameBox.Text.ToLower())).ToList();
             }
@@ -42,6 +42,12 @@ namespace QWERTY_s_1_ex_3
         private void ChangedName(object sender, RoutedEventArgs e)
         {
             RefreshData();
+        }
+
+        private void EditClients(object sender, RoutedEventArgs e)
+        {
+            Client client = clientsTable.SelectedItem as Client;
+            NavigationService.Navigate(new EditClients (context, client));
         }
     }
 }

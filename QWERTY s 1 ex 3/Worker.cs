@@ -11,7 +11,7 @@ namespace QWERTY_s_1_ex_3
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Worker
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,18 +19,23 @@ namespace QWERTY_s_1_ex_3
         {
             this.Device = new HashSet<Device>();
         }
-
+    
         public int tabNum { get; set; }
         public string FIO { get; set; }
         public int position { get; set; }
         public decimal oklad { get; set; }
         public Nullable<decimal> percentToRepair { get; set; }
-        public string p { get; set; }
         public string password { get; set; }
         public Nullable<System.DateTime> dateEmp { get; set; }
-        public string s { get; set; }
         public Nullable<int> status { get; set; }
         public string TitleStatus { get => WorkerStatus.Title; }
+        public string TitlePosition { get => Position1.title; }
+
+        //public string Stazh { get 
+        //    {
+        //        TimeSpan days = DateTime.Now - dateEmp;
+        //        int years 
+        //    } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Device> Device { get; set; }

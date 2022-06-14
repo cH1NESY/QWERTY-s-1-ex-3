@@ -28,7 +28,7 @@ namespace QWERTY_s_1_ex_3
             mastersTable.ItemsSource = context.Worker.ToList();
 
             var statusList = context.WorkerStatus.ToList();
-            statusList.Insert(0, new WorkerStatus() { Title = "все", id = 0 });
+            statusList.Insert(0, new WorkerStatus() { Title = "все", id = 0});
             statusBox.ItemsSource = statusList;
         }
 
@@ -42,7 +42,7 @@ namespace QWERTY_s_1_ex_3
 
             }
 
-            if (string.IsNullOrWhiteSpace(fioBox.Text))
+            if (!string.IsNullOrWhiteSpace(fioBox.Text))
             {
                 list = list.Where(x => x.FIO.ToLower().Contains(fioBox.Text.ToLower())).ToList();
             }
@@ -53,13 +53,13 @@ namespace QWERTY_s_1_ex_3
         {
             RefreshData();
         }
-
-        private void ChangedFio(object sender, RoutedEventArgs e)
+        private void ChangedFio(object sender, TextChangedEventArgs e)
         {
             RefreshData();
         }
 
-        private void addWorker(object sender, RoutedEventArgs e)
+
+        private void AddWorker(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddMasters(context));
         }
@@ -88,5 +88,8 @@ namespace QWERTY_s_1_ex_3
                 }
             }
         }
+
+        
+        
     }
 }

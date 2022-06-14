@@ -30,6 +30,12 @@
                 <DataGridTextColumn Header="Телефон" Width="*" Binding="{Binding phone}"/>
               
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Редактировать" Click="EditClients"/>
+                    
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </Page>

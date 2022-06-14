@@ -79,6 +79,9 @@
     <Compile Include="DevicePart.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditClients.xaml.cs">
+      <DependentUpon>EditClients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FirstDiagnostic.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

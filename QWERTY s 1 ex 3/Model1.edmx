@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище QWERTYModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище QWERTY1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Num" />
@@ -126,10 +126,8 @@
           <Property Name="position" Type="int" Nullable="false" />
           <Property Name="oklad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="percentToRepair" Type="decimal" Precision="5" Scale="4" />
-          <Property Name="p" Type="nchar" MaxLength="20" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="dateEmp" Type="date" />
-          <Property Name="s" Type="nvarchar" MaxLength="50" />
           <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="WorkerStatus">
@@ -271,6 +269,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Worker_MastersStatus">
+          <End Role="WorkerStatus" Type="Self.WorkerStatus" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerStatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Worker_Position">
           <End Role="Position" Type="Self.Position" Multiplicity="1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
@@ -283,19 +293,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Worker_WorkerStatus">
-          <End Role="WorkerStatus" Type="Self.WorkerStatus" Multiplicity="0..1" />
-          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WorkerStatus">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Worker">
-              <PropertyRef Name="status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище QWERTYModelContainer">
+        <EntityContainer Name="Хранилище QWERTY1ModelContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DevicePart" EntityType="Self.DevicePart" Schema="dbo" store:Type="Tables" />
@@ -355,12 +353,12 @@
             <End Role="Specifications" EntitySet="Specifications" />
             <End Role="SpecificationsOfPart" EntitySet="SpecificationsOfPart" />
           </AssociationSet>
-          <AssociationSet Name="FK_Worker_Position" Association="Self.FK_Worker_Position">
-            <End Role="Position" EntitySet="Position" />
+          <AssociationSet Name="FK_Worker_MastersStatus" Association="Self.FK_Worker_MastersStatus">
+            <End Role="WorkerStatus" EntitySet="WorkerStatus" />
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
-          <AssociationSet Name="FK_Worker_WorkerStatus" Association="Self.FK_Worker_WorkerStatus">
-            <End Role="WorkerStatus" EntitySet="WorkerStatus" />
+          <AssociationSet Name="FK_Worker_Position" Association="Self.FK_Worker_Position">
+            <End Role="Position" EntitySet="Position" />
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
         </EntityContainer>
@@ -368,7 +366,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QWERTYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QWERTY1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Num" />
@@ -512,14 +510,12 @@
           <Property Name="position" Type="Int32" Nullable="false" />
           <Property Name="oklad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="percentToRepair" Type="Decimal" Precision="5" Scale="4" />
-          <Property Name="p" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dateEmp" Type="DateTime" Precision="0" />
-          <Property Name="s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Int32" />
           <NavigationProperty Name="Device" Relationship="Self.FK_Device_Worker" FromRole="Worker" ToRole="Device" />
           <NavigationProperty Name="Position1" Relationship="Self.FK_Worker_Position" FromRole="Worker" ToRole="Position" />
-          <NavigationProperty Name="WorkerStatus" Relationship="Self.FK_Worker_WorkerStatus" FromRole="Worker" ToRole="WorkerStatus" />
+          <NavigationProperty Name="WorkerStatus" Relationship="Self.FK_Worker_MastersStatus" FromRole="Worker" ToRole="WorkerStatus" />
         </EntityType>
         <EntityType Name="WorkerStatus">
           <Key>
@@ -527,7 +523,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_WorkerStatus" FromRole="WorkerStatus" ToRole="Worker" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_MastersStatus" FromRole="WorkerStatus" ToRole="Worker" />
         </EntityType>
         <Association Name="FK_Device_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -673,7 +669,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Worker_WorkerStatus">
+        <Association Name="FK_Worker_MastersStatus">
           <End Role="WorkerStatus" Type="Self.WorkerStatus" Multiplicity="0..1" />
           <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -749,7 +745,7 @@
             <End Role="Specifications" EntitySet="Specifications" />
             <End Role="SpecificationsOfPart" EntitySet="SpecificationsOfPart" />
           </AssociationSet>
-          <AssociationSet Name="FK_Worker_WorkerStatus" Association="Self.FK_Worker_WorkerStatus">
+          <AssociationSet Name="FK_Worker_MastersStatus" Association="Self.FK_Worker_MastersStatus">
             <End Role="WorkerStatus" EntitySet="WorkerStatus" />
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
@@ -759,9 +755,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище QWERTYModelContainer" CdmEntityContainer="QWERTYEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище QWERTY1ModelContainer" CdmEntityContainer="QWERTYEntities1">
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="QWERTYModel.Client">
+            <EntityTypeMapping TypeName="QWERTY1Model.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Num" ColumnName="Num" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -772,7 +768,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Device">
-            <EntityTypeMapping TypeName="QWERTYModel.Device">
+            <EntityTypeMapping TypeName="QWERTY1Model.Device">
               <MappingFragment StoreEntitySet="Device">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -785,7 +781,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DevicePart">
-            <EntityTypeMapping TypeName="QWERTYModel.DevicePart">
+            <EntityTypeMapping TypeName="QWERTY1Model.DevicePart">
               <MappingFragment StoreEntitySet="DevicePart">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -795,7 +791,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FirstDiagnostic">
-            <EntityTypeMapping TypeName="QWERTYModel.FirstDiagnostic">
+            <EntityTypeMapping TypeName="QWERTY1Model.FirstDiagnostic">
               <MappingFragment StoreEntitySet="FirstDiagnostic">
                 <ScalarProperty Name="idDiagnostic" ColumnName="idDiagnostic" />
                 <ScalarProperty Name="device" ColumnName="device" />
@@ -804,7 +800,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PartsToRepair">
-            <EntityTypeMapping TypeName="QWERTYModel.PartsToRepair">
+            <EntityTypeMapping TypeName="QWERTY1Model.PartsToRepair">
               <MappingFragment StoreEntitySet="PartsToRepair">
                 <ScalarProperty Name="idRepair" ColumnName="idRepair" />
                 <ScalarProperty Name="idpart" ColumnName="idpart" />
@@ -813,7 +809,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Position">
-            <EntityTypeMapping TypeName="QWERTYModel.Position">
+            <EntityTypeMapping TypeName="QWERTY1Model.Position">
               <MappingFragment StoreEntitySet="Position">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -821,7 +817,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Repair">
-            <EntityTypeMapping TypeName="QWERTYModel.Repair">
+            <EntityTypeMapping TypeName="QWERTY1Model.Repair">
               <MappingFragment StoreEntitySet="Repair">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="device" ColumnName="device" />
@@ -832,7 +828,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Specifications">
-            <EntityTypeMapping TypeName="QWERTYModel.Specifications">
+            <EntityTypeMapping TypeName="QWERTY1Model.Specifications">
               <MappingFragment StoreEntitySet="Specifications">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -840,7 +836,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecificationsOfPart">
-            <EntityTypeMapping TypeName="QWERTYModel.SpecificationsOfPart">
+            <EntityTypeMapping TypeName="QWERTY1Model.SpecificationsOfPart">
               <MappingFragment StoreEntitySet="SpecificationsOfPart">
                 <ScalarProperty Name="idScpecification" ColumnName="idScpecification" />
                 <ScalarProperty Name="idPart" ColumnName="idPart" />
@@ -849,7 +845,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="QWERTYModel.Status">
+            <EntityTypeMapping TypeName="QWERTY1Model.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -857,7 +853,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QWERTYModel.sysdiagrams">
+            <EntityTypeMapping TypeName="QWERTY1Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -868,7 +864,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="QWERTYModel.Type">
+            <EntityTypeMapping TypeName="QWERTY1Model.Type">
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -876,7 +872,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Types">
-            <EntityTypeMapping TypeName="QWERTYModel.Types">
+            <EntityTypeMapping TypeName="QWERTY1Model.Types">
               <MappingFragment StoreEntitySet="Types">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
@@ -884,23 +880,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worker">
-            <EntityTypeMapping TypeName="QWERTYModel.Worker">
+            <EntityTypeMapping TypeName="QWERTY1Model.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="tabNum" ColumnName="tabNum" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="oklad" ColumnName="oklad" />
                 <ScalarProperty Name="percentToRepair" ColumnName="percentToRepair" />
-                <ScalarProperty Name="p" ColumnName="p" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="dateEmp" ColumnName="dateEmp" />
-                <ScalarProperty Name="s" ColumnName="s" />
                 <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkerStatus">
-            <EntityTypeMapping TypeName="QWERTYModel.WorkerStatus">
+            <EntityTypeMapping TypeName="QWERTY1Model.WorkerStatus">
               <MappingFragment StoreEntitySet="WorkerStatus">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

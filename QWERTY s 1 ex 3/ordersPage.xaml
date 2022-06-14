@@ -23,16 +23,16 @@
         <Label Content="Заказы" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
 
         <Label Content="Введите модель:" Grid.Row="1" Grid.Column="0"/>
-        <TextBox x:Name="modelBox"  Height="25" Grid.Column="0" Grid.Row="2" Width="250" HorizontalAlignment="Left" SelectionChanged="Changedname"/>
+        <TextBox x:Name="modelBox"  Height="25" Grid.Column="0" Grid.Row="2" Width="250" HorizontalAlignment="Left" TextChanged="Changedname"/>
         <Label Content="Выберите тип:" Grid.Row="1" Grid.Column="1"/>
-        <ComboBox x:Name="typeBox"  Height="25" Grid.Column="1" Grid.Row="2" Width="250" HorizontalAlignment="Left" DisplayMemberPath="type" SelectionChanged="ChangedType"/>
+        <ComboBox Name="typeBox"  Height="25" Grid.Column="1" Grid.Row="2" Width="250" HorizontalAlignment="Left" DisplayMemberPath="Title" SelectionChanged="ChangedType"/>
         <DataGrid Grid.Row="3" Grid.ColumnSpan="2" AutoGenerateColumns="False" Name="ordersTable">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id" Width="*" Binding="{Binding id}"/>
-                <DataGridTextColumn Header="Тип" Width="*" Binding="{Binding type}"/>
+                <DataGridTextColumn Header="Тип" Width="*" Binding="{Binding typeOrders}"/>
                 <DataGridTextColumn Header="Модель" Width="*" Binding="{Binding model}"/>
                 <DataGridTextColumn Header="Жалобы" Width="*" Binding="{Binding complaint}"/>
-                <DataGridTextColumn Header="Мастер" Width="*" Binding="{Binding FioMasters}"/>
+                <DataGridTextColumn Header="Мастер" Width="*" Binding="{Binding WorkerMasters}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

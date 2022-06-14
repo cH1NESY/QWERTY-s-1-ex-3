@@ -26,6 +26,11 @@ namespace QWERTY_s_1_ex_3
             InitializeComponent();
             context = new QWERTYEntities1();
             ordersTable.ItemsSource = context.Device.ToList();
+
+            var typeList = context.Type.ToList();
+            typeList.Insert(0, new Type() { Title = "все", id = 0 });
+            typeBox.ItemsSource = typeList;
+          
         }
         public void RefreshData()
         {
@@ -33,11 +38,11 @@ namespace QWERTY_s_1_ex_3
             if (typeBox.SelectedIndex > 0)
             {
                 Type ty = typeBox.SelectedItem as Type;
-                list = list.Where(x => x.type.Equals(ty)).ToList();
+                list = list.Where(x => x.Type1 == ty).ToList();
 
             }
 
-            if (string.IsNullOrWhiteSpace(modelBox.Text))
+            if (!string.IsNullOrWhiteSpace(modelBox.Text))
             {
                 list = list.Where(x => x.model.ToLower().Contains(modelBox.Text.ToLower())).ToList();
             }

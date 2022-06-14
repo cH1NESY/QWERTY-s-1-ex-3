@@ -26,6 +26,7 @@ namespace QWERTY_s_1_ex_3
             InitializeComponent();
             context = cont;
             statusBox.ItemsSource = context.WorkerStatus.ToList();
+            posBox.ItemsSource = context.Position.ToList();
             flag = true;
         }
 
@@ -40,8 +41,10 @@ namespace QWERTY_s_1_ex_3
                     FIO = fioBox.Text,
                     oklad = Convert.ToDecimal(okladBox.Text),
                     percentToRepair = Convert.ToDecimal(percentBox.Text),
-                    status =Convert.ToInt32( statusBox.Text),
-                    password = passBox.Text
+                    status = (statusBox.SelectedItem as WorkerStatus).id,
+                    password = passBox.Text,
+                    position = (posBox.SelectedItem as Position).id,
+                    dateEmp = Convert.ToDateTime(DateBox.SelectedDate)
                 };
                 context.Worker.Add(worker);
                 context.SaveChanges();
@@ -49,11 +52,14 @@ namespace QWERTY_s_1_ex_3
             }
             else 
             {
+               
                 context.Worker.Find(worker1.tabNum).FIO = fioBox.Text;
                 context.Worker.Find(worker1.tabNum).oklad = Convert.ToDecimal(okladBox.Text);
                 context.Worker.Find(worker1.tabNum).percentToRepair =Convert.ToDecimal( percentBox.Text);
-                context.Worker.Find(worker1.tabNum).status = Convert.ToInt32( statusBox.Text);
+                context.Worker.Find(worker1.tabNum).status = (statusBox.SelectedItem as WorkerStatus).id;
                 context.Worker.Find(worker1.tabNum).password = passBox.Text;
+                context.Worker.Find(worker1.tabNum).position = (posBox.SelectedItem as Position).id; 
+                context.Worker.Find(worker1.tabNum).dateEmp = Convert.ToDateTime(DateBox.SelectedDate);
                 context.SaveChanges();
                 NavigationService.Navigate(new MastersPage());
             }
@@ -63,8 +69,9 @@ namespace QWERTY_s_1_ex_3
         {
             InitializeComponent();
             context = cont;
-            statusBox.ItemsSource = context.Status.ToList();
+            statusBox.ItemsSource = context.WorkerStatus.ToList();
             worker1 = worker;
+            posBox.ItemsSource = context.Position.ToList();
 
             tubnBox.Text = worker.tabNum.ToString();
             fioBox.Text = worker.FIO;
@@ -72,6 +79,9 @@ namespace QWERTY_s_1_ex_3
             percentBox.Text = worker.percentToRepair.ToString();
             statusBox.SelectedItem = worker.status;
             passBox.Text = worker.password;
+           
+            posBox.SelectedItem = worker.Position1;
+            DateBox.SelectedDate = worker.dateEmp;
             flag = false;
         }
     }
