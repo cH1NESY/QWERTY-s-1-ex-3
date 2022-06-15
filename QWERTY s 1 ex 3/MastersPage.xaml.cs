@@ -25,7 +25,7 @@ namespace QWERTY_s_1_ex_3
         {
             InitializeComponent();
             context = new QWERTYEntities();
-            mastersTable.ItemsSource = context.Worker.ToList();
+            mastersTable.ItemsSource = context.Worker.ToList().Where(x => x.Position1.title.Equals("Мастер"));
 
             var statusList = context.WorkerStatus.ToList();
             statusList.Insert(0, new WorkerStatus() { Title = "все", id = 0});
