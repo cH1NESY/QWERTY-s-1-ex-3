@@ -11,7 +11,14 @@
         </Style>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="14"/>
+            
         </Style>
-       
+        
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="Black"></Setter>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
     </Application.Resources>
+        
+        
 </Application>

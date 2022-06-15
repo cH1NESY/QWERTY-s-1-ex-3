@@ -26,7 +26,14 @@
         <Label Content="Введите ФИО:" Grid.Row="1" Grid.Column="0"/>
         <TextBox x:Name="fioBox"  Height="25" Grid.Column="0" Grid.Row="2" Width="250" HorizontalAlignment="Left" TextChanged="ChangedFio"/>
         <Label Content="Выберите статус:" Grid.Row="1" Grid.Column="1"/>
-        <Button Content="Добавить" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="1" Margin="5" Width="100" Click="AddWorker"/>
+        <Button Content=" +" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="1" Margin="5" Width="100" Click="AddWorker">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
         <ComboBox Name="statusBox"  Height="25" Grid.Column="1" Grid.Row="2" Width="250" HorizontalAlignment="Left" DisplayMemberPath="Title" SelectionChanged="ChangedStatus"/>
         <DataGrid Grid.Row="3" Grid.ColumnSpan="2" AutoGenerateColumns="False" Name="mastersTable">
             <DataGrid.Columns>
