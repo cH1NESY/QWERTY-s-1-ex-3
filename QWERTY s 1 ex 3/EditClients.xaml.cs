@@ -20,8 +20,8 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class EditClients : Page
     {
-        QWERTYEntities1 context;
-        public EditClients(QWERTYEntities1 cont)
+        QWERTYEntities context;
+        public EditClients(QWERTYEntities cont)
         {
             InitializeComponent();
             context = cont;
@@ -38,7 +38,7 @@ namespace QWERTY_s_1_ex_3
             NavigationService.Navigate(new MastersPage());
         }
         Client client1;
-        public EditClients(QWERTYEntities1 cont, Client client)
+        public EditClients(QWERTYEntities cont, Client client)
         {
             InitializeComponent();
             context = cont;

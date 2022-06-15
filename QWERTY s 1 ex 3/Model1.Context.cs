@@ -13,10 +13,10 @@ namespace QWERTY_s_1_ex_3
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QWERTYEntities1 : DbContext
+    public partial class QWERTYEntities : DbContext
     {
-        public QWERTYEntities1()
-            : base("name=QWERTYEntities1")
+        public QWERTYEntities()
+            : base("name=QWERTYEntities")
         {
         }
     

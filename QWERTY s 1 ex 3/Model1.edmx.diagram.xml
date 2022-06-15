@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b714ba9c4ebc4453b8b71d1da0e34783" Name="Diagram1">
+        <EntityTypeShape EntityType="QWERTY1Model.Client" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Device" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.DevicePart" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.FirstDiagnostic" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.PartsToRepair" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Position" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Repair" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Specifications" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.SpecificationsOfPart" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Status" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Type" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Types" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.Worker" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTY1Model.WorkerStatus" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="QWERTY1Model.FK_Device_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Device_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Device_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Device_Worker" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_FirstDiagnostic_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Repair_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_PartsToRepair_DevicePart" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_SpecificationsOfPart_DevicePart" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_PartsToRepair_Repair" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Worker_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Repair_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_SpecificationsOfPart_Specifications" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTY1Model.FK_Worker_MastersStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
