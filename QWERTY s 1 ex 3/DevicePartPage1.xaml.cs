@@ -25,6 +25,7 @@ namespace QWERTY_s_1_ex_3
         {
             InitializeComponent();
             context = cont;
-            DevicePartTable.ItemsSource = cont.DevicePart.ToList().Where(x => x.type == typeDevicePart.id).ToList();        }
+            DevicePartTable.ItemsSource = cont.DevicePart.ToList().Where(x => x.type == typeDevicePart.id).ToList(); 
+        }
     }
 }
