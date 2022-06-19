@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace QWERTY_s_1_ex_3
         public Window2()
         {
             InitializeComponent();
+            
             myFrame.Navigate(new ClientsPage());
         }
 
@@ -38,6 +40,23 @@ namespace QWERTY_s_1_ex_3
         private void ClientsClick(object sender, RoutedEventArgs e)
         {
             myFrame.Navigate(new ClientsPage());
+        }
+
+        private void DownloadPictures()
+        {
+            QWERTYEntities1 context = new QWERTYEntities1();
+            List <TypeDevicePart> typeDeviceParts = context.TypeDevicePart.ToList();
+            
+            foreach (var item in typeDeviceParts)
+            {
+                item.image = File.ReadAllBytes(@"C:\QWERTYPicture\" + item.id + ".jpg");
+            }
+            context.SaveChanges();
+        }
+
+        private void DevicePartClick(object sender, RoutedEventArgs e)
+        {
+            myFrame.Navigate(new DevicePartPage());
         }
     }
 }

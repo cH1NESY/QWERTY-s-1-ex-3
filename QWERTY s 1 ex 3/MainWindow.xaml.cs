@@ -20,11 +20,11 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class MainWindow : Window
     {
-        QWERTYEntities context;
+        QWERTYEntities1 context;
         public MainWindow()
         {
             InitializeComponent();
-            context = new QWERTYEntities();
+            context = new QWERTYEntities1();
         }
 
         int attempt = 3;

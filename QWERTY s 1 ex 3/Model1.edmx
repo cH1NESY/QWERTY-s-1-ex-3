@@ -35,6 +35,8 @@
           <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="count" Type="int" Nullable="false" />
           <Property Name="cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="image" Type="image" />
+          <Property Name="type" Type="int" />
         </EntityType>
         <EntityType Name="FirstDiagnostic">
           <Key>
@@ -110,6 +112,14 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="TypeDevicePart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="image" Type="image" />
+        </EntityType>
         <EntityType Name="Types">
           <Key>
             <PropertyRef Name="id" />
@@ -126,7 +136,6 @@
           <Property Name="position" Type="int" Nullable="false" />
           <Property Name="oklad" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="percentToRepair" Type="decimal" Precision="5" Scale="4" />
-          <Property Name="p" Type="nchar" MaxLength="20" />
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="dateEmp" Type="date" />
           <Property Name="s" Type="nvarchar" MaxLength="50" />
@@ -156,6 +165,18 @@
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_TypeDevicePart">
+          <End Role="TypeDevicePart" Type="Self.TypeDevicePart" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevicePart">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Device">
@@ -308,6 +329,7 @@
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeDevicePart" EntityType="Self.TypeDevicePart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkerStatus" EntityType="Self.WorkerStatus" Schema="dbo" store:Type="Tables" />
@@ -317,6 +339,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Device_Type" Association="Self.FK_Device_Type">
             <End Role="Type" EntitySet="Type" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_TypeDevicePart" Association="Self.FK_Device_TypeDevicePart">
+            <End Role="TypeDevicePart" EntitySet="TypeDevicePart" />
             <End Role="Device" EntitySet="Device" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_Types" Association="Self.FK_Device_Types">
@@ -393,6 +419,7 @@
           <Property Name="client" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client1" Relationship="Self.FK_Device_Client" FromRole="Device" ToRole="Client" />
           <NavigationProperty Name="Type1" Relationship="Self.FK_Device_Type" FromRole="Device" ToRole="Type" />
+          <NavigationProperty Name="TypeDevicePart" Relationship="Self.FK_Device_TypeDevicePart" FromRole="Device" ToRole="TypeDevicePart" />
           <NavigationProperty Name="Types" Relationship="Self.FK_Device_Types" FromRole="Device" ToRole="Types" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Device_Worker" FromRole="Device" ToRole="Worker" />
           <NavigationProperty Name="FirstDiagnostic" Relationship="Self.FK_FirstDiagnostic_Device" FromRole="Device" ToRole="FirstDiagnostic" />
@@ -406,6 +433,8 @@
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="count" Type="Int32" Nullable="false" />
           <Property Name="cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="type" Type="Int32" />
           <NavigationProperty Name="PartsToRepair" Relationship="Self.FK_PartsToRepair_DevicePart" FromRole="DevicePart" ToRole="PartsToRepair" />
           <NavigationProperty Name="SpecificationsOfPart" Relationship="Self.FK_SpecificationsOfPart_DevicePart" FromRole="DevicePart" ToRole="SpecificationsOfPart" />
         </EntityType>
@@ -495,6 +524,15 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Device" Relationship="Self.FK_Device_Type" FromRole="Type" ToRole="Device" />
         </EntityType>
+        <EntityType Name="TypeDevicePart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Device_TypeDevicePart" FromRole="TypeDevicePart" ToRole="Device" />
+        </EntityType>
         <EntityType Name="Types">
           <Key>
             <PropertyRef Name="id" />
@@ -512,7 +550,6 @@
           <Property Name="position" Type="Int32" Nullable="false" />
           <Property Name="oklad" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="percentToRepair" Type="Decimal" Precision="5" Scale="4" />
-          <Property Name="p" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dateEmp" Type="DateTime" Precision="0" />
           <Property Name="s" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -546,6 +583,18 @@
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_TypeDevicePart">
+          <End Role="TypeDevicePart" Type="Self.TypeDevicePart" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDevicePart">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Device">
@@ -685,7 +734,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QWERTYEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QWERTYEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Device" EntityType="Self.Device" />
           <EntitySet Name="DevicePart" EntityType="Self.DevicePart" />
@@ -698,6 +747,7 @@
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="TypeDevicePart" EntityType="Self.TypeDevicePart" />
           <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Worker" EntityType="Self.Worker" />
           <EntitySet Name="WorkerStatus" EntityType="Self.WorkerStatus" />
@@ -707,6 +757,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Device_Type" Association="Self.FK_Device_Type">
             <End Role="Type" EntitySet="Type" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_TypeDevicePart" Association="Self.FK_Device_TypeDevicePart">
+            <End Role="TypeDevicePart" EntitySet="TypeDevicePart" />
             <End Role="Device" EntitySet="Device" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_Types" Association="Self.FK_Device_Types">
@@ -759,7 +813,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище QWERTYModelContainer" CdmEntityContainer="QWERTYEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище QWERTYModelContainer" CdmEntityContainer="QWERTYEntities1">
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="QWERTYModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -791,6 +845,8 @@
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="count" ColumnName="count" />
                 <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="type" ColumnName="type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -875,6 +931,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TypeDevicePart">
+            <EntityTypeMapping TypeName="QWERTYModel.TypeDevicePart">
+              <MappingFragment StoreEntitySet="TypeDevicePart">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Types">
             <EntityTypeMapping TypeName="QWERTYModel.Types">
               <MappingFragment StoreEntitySet="Types">
@@ -891,7 +956,6 @@
                 <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="oklad" ColumnName="oklad" />
                 <ScalarProperty Name="percentToRepair" ColumnName="percentToRepair" />
-                <ScalarProperty Name="p" ColumnName="p" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="dateEmp" ColumnName="dateEmp" />
                 <ScalarProperty Name="s" ColumnName="s" />

@@ -20,11 +20,11 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class MastersPage : Page
     {
-        QWERTYEntities context;
+        QWERTYEntities1 context;
         public MastersPage()
         {
             InitializeComponent();
-            context = new QWERTYEntities();
+            context = new QWERTYEntities1();
             mastersTable.ItemsSource = context.Worker.ToList().Where(x => x.Position1.title.Equals("Мастер"));
 
             var statusList = context.WorkerStatus.ToList();

@@ -25,6 +25,8 @@ namespace QWERTY_s_1_ex_3
         public string title { get; set; }
         public int count { get; set; }
         public decimal cost { get; set; }
+        public byte[] image { get; set; }
+        public Nullable<int> type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartsToRepair> PartsToRepair { get; set; }

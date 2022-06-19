@@ -20,11 +20,11 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class ClientsPage : Page
     {
-        QWERTYEntities context;
+        QWERTYEntities1 context;
         public ClientsPage()
         {
             InitializeComponent(); 
-            context = new QWERTYEntities();
+            context = new QWERTYEntities1();
             clientsTable.ItemsSource = context.Client.ToList();
 
         }

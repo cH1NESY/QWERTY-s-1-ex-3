@@ -13,10 +13,10 @@ namespace QWERTY_s_1_ex_3
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QWERTYEntities : DbContext
+    public partial class QWERTYEntities1 : DbContext
     {
-        public QWERTYEntities()
-            : base("name=QWERTYEntities")
+        public QWERTYEntities1()
+            : base("name=QWERTYEntities1")
         {
         }
     
@@ -37,6 +37,7 @@ namespace QWERTY_s_1_ex_3
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<TypeDevicePart> TypeDevicePart { get; set; }
         public virtual DbSet<Types> Types { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
         public virtual DbSet<WorkerStatus> WorkerStatus { get; set; }

@@ -20,8 +20,8 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class AddMasters : Page
     {
-        QWERTYEntities context;
-        public AddMasters(QWERTYEntities cont)
+        QWERTYEntities1 context;
+        public AddMasters(QWERTYEntities1 cont)
         {
             InitializeComponent();
             context = cont;
@@ -65,7 +65,7 @@ namespace QWERTY_s_1_ex_3
             }
         }
         Worker worker1;
-        public AddMasters(QWERTYEntities cont, Worker worker)
+        public AddMasters(QWERTYEntities1 cont, Worker worker)
         {
             InitializeComponent();
             context = cont;

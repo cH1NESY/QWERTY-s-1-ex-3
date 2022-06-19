@@ -17,12 +17,14 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Image Source="Logo.png" Height="100" Grid.Row="0" Grid.Column="0"/>
             <Button Content="Мастера" Grid.Row="1" Width="130" VerticalAlignment="Center" Click="MastersClick"/>
             <Button Content="Клиенты" Grid.Row="2" Width="130" VerticalAlignment="Center" Click="ClientsClick"/>
             <Button Content="Заказы" Grid.Row="3" Width="130" VerticalAlignment="Center" Click="OrdersClick"/>
+            <Button Content="Комплектующие" Grid.Row="4" Width="130" VerticalAlignment="Center" Click="DevicePartClick"/>
         </Grid>
         <Frame Grid.Column="1" x:Name="myFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

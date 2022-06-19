@@ -19,11 +19,11 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class Window1 : Window
     {
-        QWERTYEntities context;
+        QWERTYEntities1 context;
         public Window1()
         {
             InitializeComponent();
-            context = new QWERTYEntities();
+            context = new QWERTYEntities1();
         }
 
         private void EnterClick(object sender, RoutedEventArgs e)
