@@ -28,10 +28,12 @@ namespace QWERTY_s_1_ex_3
         public string complaint { get; set; }
         public Nullable<int> master { get; set; }
         public int client { get; set; }
-    
+        public string WorkerMasters { get => Worker.FIO; }
+        public string typeOrders { get => Type1.Title; }
+
+
         public virtual Client Client1 { get; set; }
         public virtual Type Type1 { get; set; }
-        public virtual TypeDevicePart TypeDevicePart { get; set; }
         public virtual Types Types { get; set; }
         public virtual Worker Worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

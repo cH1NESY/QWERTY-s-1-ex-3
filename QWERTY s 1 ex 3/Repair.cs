@@ -25,7 +25,10 @@ namespace QWERTY_s_1_ex_3
         public string comment { get; set; }
         public int status { get; set; }
         public Nullable<decimal> cost { get; set; }
-    
+        public string TitleStatus { get => Status1.Title; }
+        public string DeviceTitle { get => Device1.model; }
+
+
         public virtual Device Device1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartsToRepair> PartsToRepair { get; set; }

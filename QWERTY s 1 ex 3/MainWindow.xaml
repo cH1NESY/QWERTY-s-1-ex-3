@@ -33,7 +33,7 @@
             <TextBox x:Name="login" Grid.Row="2" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
             <Label Content="Введите пароль" Grid.Row="3" HorizontalContentAlignment="Left"/>
             <TextBox x:Name="password" Grid.Row="4" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
-            <Button Grid.Row="5" Content="Вход" HorizontalAlignment="Center" Width="150" VerticalAlignment="Center" Height="25" Click="EnterClick" Name="enter"/>
+            <Button Grid.Row="5" Content="Вход" HorizontalAlignment="Center" Width="150" VerticalAlignment="Bottom" Height="24" Click="EnterClick" Name="enter" Margin="123,0,123,5"/>
         </Grid>
 
         <Label Grid.Column="1" Grid.Row="0" Content="Фирма ремонта QWERTY" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

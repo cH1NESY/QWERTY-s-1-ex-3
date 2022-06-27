@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QWERTY_s_1_ex_3"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800" Background="#FF009FDA">
+        Title="Window2" Height="450" Width="800" Background="#FF009FDA" Closed="ClosedWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,13 +18,17 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Image Source="Logo.png" Height="100" Grid.Row="0" Grid.Column="0"/>
-            <Button Content="Мастера" Grid.Row="1" Width="130" VerticalAlignment="Center" Click="MastersClick"/>
-            <Button Content="Клиенты" Grid.Row="2" Width="130" VerticalAlignment="Center" Click="ClientsClick"/>
-            <Button Content="Заказы" Grid.Row="3" Width="130" VerticalAlignment="Center" Click="OrdersClick"/>
-            <Button Content="Комплектующие" Grid.Row="4" Width="130" VerticalAlignment="Center" Click="DevicePartClick"/>
+            <Button Content="Мастера" Grid.Row="1" Width="130" VerticalAlignment="Center" Click="MastersClick" Name="MastersBut"/>
+            <Button Content="Клиенты" Grid.Row="2" Width="130" VerticalAlignment="Center" Click="ClientsClick" Name="ClientsBut"/>
+            <Button Content="Заказы" Grid.Row="3" Width="130" VerticalAlignment="Center" Click="OrdersClick" Name="OrderBut"/>
+            <Button Content="Комплектующие" Grid.Row="4" Width="130" VerticalAlignment="Center" Click="DevicePartClick" Name="DPartBut"/>
+            <Button Content="Ремонт" Grid.Row="5" Width="130" VerticalAlignment="Center" Click="RepairClick" Name="RepairBut"/>
+            <Button Content="Результаты д-ки" Grid.Row="6" Width="130" VerticalAlignment="Center" Click="DiagClick" Name="DiagBut"/>
         </Grid>
         <Frame Grid.Column="1" x:Name="myFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

@@ -30,8 +30,7 @@ namespace QWERTY_s_1_ex_3
         int attempt = 3;
         private void EnterClick(object sender, RoutedEventArgs e)
         {
-            attempt--;
-
+                attempt--;
             if (attempt == 0)
             {
 
@@ -40,6 +39,11 @@ namespace QWERTY_s_1_ex_3
             }
             try
             {
+            Worker worker1;
+            using (QWERTYEntities1 context = new QWERTYEntities1())
+            {
+                worker1 = context.Worker.Find(Convert.ToInt32(login.Text));
+            }
                 int tubNum = Convert.ToInt32(login.Text);
                 string pass = password.Text;
 
@@ -53,9 +57,9 @@ namespace QWERTY_s_1_ex_3
                 {
                     if (worker.password.Equals(pass))
                     {
-                        
+                       
                         MessageBox.Show("Успешная авторизация!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window2 window2 = new Window2();
+                        Window2 window2 = new Window2(worker, this);
                         window2.ShowDialog();
                         
                         
@@ -66,6 +70,10 @@ namespace QWERTY_s_1_ex_3
                         MessageBox.Show("Неправильно введен пароль, осталось попыток:" + attempt, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
+                //if (worker1.password.Equals(pass))
+                //{
+                    
+                //}
 
             }
             catch (FormatException)

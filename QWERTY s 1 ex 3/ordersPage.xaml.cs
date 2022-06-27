@@ -58,5 +58,29 @@ namespace QWERTY_s_1_ex_3
         {
             RefreshData();
         }
+
+        private void AppClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new applicationPage(context));
+        }
+
+        private void DeleteOrder(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult res = MessageBox.Show("Вы уверены, что хотите удалить заказ?", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Device device = ordersTable.SelectedItem as Device;
+                    context.Device.Remove(device);
+                    context.SaveChanges();
+                    NavigationService.Navigate(new ordersPage());
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка!");
+                }
+            }
+        }
     }
 }

@@ -20,11 +20,21 @@ namespace QWERTY_s_1_ex_3
     /// </summary>
     public partial class Window2 : Window
     {
-        public Window2()
+        MainWindow window1;
+        public Window2(Worker worker, MainWindow window)
         {
             InitializeComponent();
             
             myFrame.Navigate(new ClientsPage());
+            if (worker.position == 1)
+            {
+                MastersBut.Visibility = Visibility.Collapsed;
+                ClientsBut.Visibility = Visibility.Collapsed;
+               
+                
+            }
+            window.Visibility = Visibility.Collapsed;
+            window1 = window;
         }
 
         private void MastersClick(object sender, RoutedEventArgs e)
@@ -57,6 +67,21 @@ namespace QWERTY_s_1_ex_3
         private void DevicePartClick(object sender, RoutedEventArgs e)
         {
             myFrame.Navigate(new DevicePartPage());
+        }
+
+        private void RepairClick(object sender, RoutedEventArgs e)
+        {
+            myFrame.Navigate(new RepairPage());
+        }
+
+        private void ClosedWindow(object sender, EventArgs e)
+        {
+            window1.Close();
+        }
+
+        private void DiagClick(object sender, RoutedEventArgs e)
+        {
+            myFrame.Navigate(new DiagnosticPage());
         }
     }
 }

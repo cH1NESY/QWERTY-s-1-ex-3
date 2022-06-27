@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b1d5353c461f469b9ac2a0482363ee6a" Name="Diagram1" ZoomLevel="53">
+      <Diagram DiagramId="2e02b04132e942d1a6aa66d81edc2159" Name="Diagram1">
         <EntityTypeShape EntityType="QWERTYModel.Client" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.Device" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.DevicePart" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.Device" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.DevicePart" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.FirstDiagnostic" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.PartsToRepair" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Position" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Repair" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.Specifications" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.SpecificationsOfPart" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.Specifications" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.SpecificationsOfPart" Width="1.5" PointX="9.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Status" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.Type" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.TypeDevicePart" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.Types" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QWERTYModel.Worker" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.TypeDevicePart" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.Types" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QWERTYModel.Worker" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QWERTYModel.WorkerStatus" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Client" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Type" ManuallyRouted="false" />
-        <AssociationConnector Association="QWERTYModel.FK_Device_TypeDevicePart" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Types" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Device_Worker" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_FirstDiagnostic_Device" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_Repair_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="QWERTYModel.FK_DevicePart_TypeDevicePart" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_PartsToRepair_DevicePart" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_SpecificationsOfPart_DevicePart" ManuallyRouted="false" />
         <AssociationConnector Association="QWERTYModel.FK_PartsToRepair_Repair" ManuallyRouted="false" />

@@ -17,7 +17,7 @@ namespace QWERTY_s_1_ex_3
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeDevicePart()
         {
-            this.Device = new HashSet<Device>();
+            this.DevicePart = new HashSet<DevicePart>();
         }
     
         public int id { get; set; }
@@ -25,6 +25,6 @@ namespace QWERTY_s_1_ex_3
         public byte[] image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Device> Device { get; set; }
+        public virtual ICollection<DevicePart> DevicePart { get; set; }
     }
 }
