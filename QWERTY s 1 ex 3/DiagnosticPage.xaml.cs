@@ -48,7 +48,7 @@ namespace QWERTY_s_1_ex_3
             context.Device.Find(device1.id).model = modBox.Text;
             context.Device.Find(device1.id).complaint = compBox.Text;
             context.Device.Find(device1.id).master = (masterBox.SelectedItem as Worker).tabNum;
-            //context.Device.Find(device1.id).RepairStatus = (statusBox.SelectedItem as Status).id;
+            
 
 
             context.SaveChanges();
