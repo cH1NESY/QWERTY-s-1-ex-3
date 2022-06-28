@@ -79,9 +79,6 @@ namespace QWERTY_s_1_ex_3
             window1.Close();
         }
 
-        private void DiagClick(object sender, RoutedEventArgs e)
-        {
-            myFrame.Navigate(new DiagnosticPage());
-        }
+       
     }
 }

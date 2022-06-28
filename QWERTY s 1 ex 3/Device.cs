@@ -31,6 +31,18 @@ namespace QWERTY_s_1_ex_3
         public string WorkerMasters { get => Worker.FIO; }
         public string typeOrders { get => Type1.Title; }
 
+        public string RepairStatus {get   
+            {
+                if (Repair.Count != 0)
+                {
+                    return "В ремонте";
+                }
+                if (FirstDiagnostic.Count != 0)
+                {
+                    return "На диагностике";
+                }
+                else { return ""; }
+            } }
 
         public virtual Client Client1 { get; set; }
         public virtual Type Type1 { get; set; }

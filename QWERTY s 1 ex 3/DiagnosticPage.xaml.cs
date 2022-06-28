@@ -21,10 +21,15 @@ namespace QWERTY_s_1_ex_3
     public partial class DiagnosticPage : Page
     {
         QWERTYEntities1 context;
-        public DiagnosticPage()
+
+        public DiagnosticPage(QWERTYEntities1 cont)
         {
             InitializeComponent();
-            context = new QWERTYEntities1();
+            context = cont;
+
+            statusBox.ItemsSource = context.Status.ToList();
+            masterBox.ItemsSource = context.Worker.ToList().Where(x => x.Position1.title.Equals("Мастер"));
+            typeBox.ItemsSource = context.Type.ToList();
 
         }
 
@@ -39,7 +44,47 @@ namespace QWERTY_s_1_ex_3
 
         private void repClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new DevicePartPage());
+            context.Device.Find(device1.id).type = (typeBox.SelectedItem as Type).id;
+            context.Device.Find(device1.id).model = modBox.Text;
+            context.Device.Find(device1.id).complaint = compBox.Text;
+            context.Device.Find(device1.id).master = (masterBox.SelectedItem as Worker).tabNum;
+            //context.Device.Find(device1.id).RepairStatus = (statusBox.SelectedItem as Status).id;
+
+
+            context.SaveChanges();
+            NavigationService.Navigate(new ordersPage());
+            MessageBoxResult res = MessageBox.Show("Оборудование будет отправлено на ремонт.", "Подтверждение", MessageBoxButton.YesNo);
+            if (res == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Оборудование отправлено на ремонт!", "Успешно!");
+            }
+        }
+        Device device1;
+        public DiagnosticPage(QWERTYEntities1 cont, Device device)
+        {
+            InitializeComponent();
+            context = cont;
+            statusBox.ItemsSource = context.Status.ToList();
+            masterBox.ItemsSource = context.Worker.ToList().Where(x => x.Position1.title.Equals("Мастер"));
+            typeBox.ItemsSource = context.Type.ToList();
+            device1 = device;
+
+            idBox.Text = device.id.ToString();
+            typeBox.SelectedItem = device.Type1;
+            modBox.Text = device.model;
+            compBox.Text = device.complaint;
+            masterBox.SelectedItem = device.WorkerMasters;
+            statusBox.SelectedItem = device.RepairStatus;
+
+
+
+        }
+
+        private void reClick(object sender, RoutedEventArgs e)
+        {
+
+            NavigationService.Navigate(new ListDevicePart());
         }
     }
+
 }

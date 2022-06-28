@@ -82,5 +82,11 @@ namespace QWERTY_s_1_ex_3
                 }
             }
         }
+
+        private void resOrder(object sender, RoutedEventArgs e)
+        {
+            Device device = ordersTable.SelectedItem as Device;
+            NavigationService.Navigate(new DiagnosticPage(context, device));
+        }
     }
 }

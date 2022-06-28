@@ -35,10 +35,12 @@
                 <DataGridTextColumn Header="Модель" Width="*" Binding="{Binding model}"/>
                 <DataGridTextColumn Header="Жалобы" Width="*" Binding="{Binding complaint}"/>
                 <DataGridTextColumn Header="Мастер" Width="*" Binding="{Binding WorkerMasters}"/>
+                <DataGridTextColumn Header="Статус" Width="*" Binding="{Binding RepairStatus}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Удалить" Click="DeleteOrder"/>
+                    <MenuItem Header="Результат диагностики" Click="resOrder"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
